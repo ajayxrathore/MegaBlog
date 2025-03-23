@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import appwriteService from "../../appwrite/config";
 import {Input, RTE, Select, Button} from "../index"
+import store from "../../store/store";
 export default function PostForm({ post }) {
   const { register, handleSubmit, watch, setValue, control, getValues } =
     useForm({
@@ -42,6 +43,8 @@ export default function PostForm({ post }) {
       if (file) {
         const fileId = file.$id;
         data.featuredImage = fileId;
+       
+        
         const dbPost = await appwriteService.createPost({
           ...data,
           userId: userData.$id,
