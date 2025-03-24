@@ -48,7 +48,7 @@ export default function Post() {
             className="rounded-xl"
           />
 
-          {isAuthor && (
+          {isAuthor ? (
             <div className="absolute right-6 top-6">
               <Link to={`/edit-post/${post.$id}`}>
                 <Button bgColor="bg-green-500" className="mr-3">
@@ -59,6 +59,10 @@ export default function Post() {
                 Delete
               </Button>
             </div>
+          ):(
+            <p className="absolute right-6 top-6 bg-gray-200 text-gray-700 px-4 py-2 rounded-lg">
+              You don't have permission to edit or delete this post..
+            </p>
           )}
         </div>
         <div className="w-full mb-6">
