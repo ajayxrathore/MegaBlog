@@ -51,6 +51,11 @@ export class Service {
   }
   async deletePost(slug) {
     try {
+      const post = await this.getPost(slug);
+        if (post && post.featuredImage) {
+            // Delete the associated image
+            await this.deleteFile(post.featuredImage);
+        }
       await this.databases.deleteDocument(
         conf.appwriteDatabaseId,
         conf.appwriteCollectionId,
